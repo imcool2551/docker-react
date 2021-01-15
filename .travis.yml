@@ -8,3 +8,17 @@ before_install:
 
 script:
   - docker run -e CI=true imcool2551/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-1
+  app: 'docker-react'
+  env: 'DockerReact-env'
+  # S3 storage created by EBS
+  bucket_name: 'elasticbeanstalk-us-east-1-424468057789'
+  bucket_path: 'docker-react'
+  on:
+    branch: master
+  # IAM access to EBS, stashed to env variables in Travis
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
