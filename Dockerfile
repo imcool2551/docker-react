@@ -12,5 +12,6 @@ RUN npm run build
 # 최종이미지의 용량은 작다.
 # nginx의 기본명령어를 통해 자동으로 웹서버가 실행된다.
 FROM nginx
+EXPOSE 80
 COPY --from=0 /app/build /usr/share/nginx/html
 
